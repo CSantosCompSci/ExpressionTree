@@ -10,6 +10,20 @@ public class BTNode<E>
 		initialRight =right;
 	}
 	
+	//method to set the left node 
+	public void setLeft(BTNode<E> newleft)
+	{
+		left = newleft;
+	}
+	
+	
+	//method to set the right node
+	public void setRight(BTNode<E> newRight)
+	{
+		right = newRight;
+	}
+	
+	
 	//This method turns the tree on a 90 degree angle print the right subtree, root, and left subtree
 	public void print(int level)
 	{

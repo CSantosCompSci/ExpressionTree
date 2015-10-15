@@ -45,17 +45,32 @@ public class Main {
 	
 	public static Stack<String> buildTree(String expression)
 	{
-		Stack <BTNode<E>> treeStack = new Stack<BTNode<E>>();
+		Stack <BTNode<String>> treeStack = new Stack<BTNode<String>>();
 		Scanner reader = new Scanner(expression);
-		int op;
+		String op;
 		while(reader.hasNext())
 		{
-			if(reader.hasNextDouble())
+			if(reader.hasNextInt())
 			{
-				op = Integer.parseInt(reader.next());
-				BTNode<Double> node = new BTNode<Double>(op,null,null);
+				op = reader.next();
+				BTNode<String> node = new BTNode<String>(op,null,null);
 				treeStack.push(node);
 			}
+			else
+				op = reader.next();
+				try
+				{
+					switch(op)
+					{
+					case "+":
+					case "-":
+					case "
+					
+					}
+				}
+				
+				
+			
 		}
 		
 		
