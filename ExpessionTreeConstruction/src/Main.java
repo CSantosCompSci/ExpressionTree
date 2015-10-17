@@ -7,6 +7,8 @@ import java.util.Stack;
 //Assignment 5
 public class Main {
 
+	static boolean invalidChar = false;
+	static Stack <BTNode<String>> treeStack = new Stack<BTNode<String>>();
 	public static void main(String[] args)
 	{
 		String expression;
@@ -26,7 +28,8 @@ public class Main {
 			expression = sc.nextLine();
 			printPostFix(expression);
 			buildTree(expression);
-			printInfix(expression);
+			
+			//printInfix(expression);
 			
 		}
 		System.out.println("Hello!! This is a postfix expression calculor.");
@@ -43,17 +46,21 @@ public class Main {
 	}
 	
 	
-	public static Stack<String> buildTree(String expression)
+	public static void buildTree(String expression)
 	{
-		Stack <BTNode<String>> treeStack = new Stack<BTNode<String>>();
+	
 		Scanner reader = new Scanner(expression);
 		String op;
+		BTNode<String> node = null;
+		BTNode<String> left, right;
 		while(reader.hasNext())
 		{
 			if(reader.hasNextInt())
 			{
 				op = reader.next();
-				BTNode<String> node = new BTNode<String>(op,null,null);
+				System.out.println(op);
+				node = new BTNode<String>(op,null,null);
+				System.out.println(node.data);
 				treeStack.push(node);
 			}
 			else
@@ -64,17 +71,43 @@ public class Main {
 					{
 					case "+":
 					case "-":
-					case "
-					
+					case "^":
+					case "/":
+					case "%":
+					case ">":
+					case "<":
+					case ">=":
+					case "==":
+					case "!=":
+					case "&&":
+					case "||":
+					case "*":
+					case "!":
+						System.out.println(op);
+						node = new BTNode<String>(op,null,null);
+						right = treeStack.pop();
+						node.setRight(right);
+						left = treeStack.pop();
+						node.setLeft(left);
+						treeStack.push(node);
+						break;
+					default:
+						throw new NumberFormatException();
+						
 					}
+				}
+				catch(NumberFormatException e)
+				{
+					
+					invalidChar = true;
 				}
 				
 				
 			
 		}
 		
-		
-		return treeStack;
+		node = treeStack.pop();
+		node.print(0);
 	}
 	
 	//Used to print expression as fully parenthesized infix expression

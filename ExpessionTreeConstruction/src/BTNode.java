@@ -1,13 +1,13 @@
 
 public class BTNode<E>
 {
-	private E data;
-	private BTNode<E> left, right;
+	public E data;
+	public BTNode<E> left, right;
 	public BTNode(E initialData, BTNode<E> initialLeft, BTNode<E> initialRight)
 	{
-		initialData = data;
-		initialLeft = left;
-		initialRight =right;
+		data = initialData;
+		left = initialLeft;
+		right = initialRight; 
 	}
 	
 	//method to set the left node 
@@ -28,12 +28,18 @@ public class BTNode<E>
 	public void print(int level)
 	{
 		if(right != null)
-		{
-			right.print(level++);
+		{			
+			right.print(++level);
 		}
 		for(int i = 1; i <= level; i++)
 		{
-			System.out.print("    ");
+			System.out.print("    " + i);
+			
+		}
+		System.out.println(data);
+		if(left != null)
+		{
+			left.print(++level);
 		}
 	}
 }
