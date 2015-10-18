@@ -29,17 +29,17 @@ public class BTNode<E>
 	{
 		if(right != null)
 		{			
-			right.print(++level);
+			right.print(level+1);
 		}
 		for(int i = 1; i <= level; i++)
 		{
-			System.out.print("    " + i);
+			System.out.print("    ");
 			
 		}
 		System.out.println(data);
 		if(left != null)
 		{
-			left.print(++level);
+			left.print(level+1);
 		}
 	}
 }

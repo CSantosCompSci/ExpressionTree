@@ -58,9 +58,7 @@ public class Main {
 			if(reader.hasNextInt())
 			{
 				op = reader.next();
-				System.out.println(op);
 				node = new BTNode<String>(op,null,null);
-				System.out.println(node.data);
 				treeStack.push(node);
 			}
 			else
