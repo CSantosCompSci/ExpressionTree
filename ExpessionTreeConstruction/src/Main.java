@@ -22,7 +22,8 @@ public class Main {
 		{
 			e.printStackTrace();
 		}
-		
+		System.out.println("Hello!! This is a postfix expression calculor.");
+		System.out.println("After each expression is displayed and calculated please press enter to go to the next expression.");
 		while(sc.hasNextLine())
 		{
 			expression = sc.nextLine();
@@ -32,8 +33,6 @@ public class Main {
 			//printInfix(expression);
 			
 		}
-		System.out.println("Hello!! This is a postfix expression calculor.");
-		System.out.println("After each expression is displayed and calculated please press enter to go to the next expression.");
 		
 		
 	}
@@ -42,9 +41,16 @@ public class Main {
 	//Used to print the original expression
 	public static void printPostFix(String expression)
 	{
-		System.out.println(expression);
+		System.out.println();
+		System.out.println("Postfix expression: " + expression);
 	}
 	
+	//Used to print expression as fully parenthesized infix expression
+	public static void printInfix(String expression)
+	{
+		Scanner reader = new Scanner(expression);
+		
+	}
 	
 	public static void buildTree(String expression)
 	{
@@ -80,8 +86,6 @@ public class Main {
 					case "&&":
 					case "||":
 					case "*":
-					case "!":
-						System.out.println(op);
 						node = new BTNode<String>(op,null,null);
 						right = treeStack.pop();
 						node.setRight(right);
@@ -89,8 +93,16 @@ public class Main {
 						node.setLeft(left);
 						treeStack.push(node);
 						break;
-					default:
-						throw new NumberFormatException();
+					case "!":
+						node = new BTNode<String>(op,null,null);
+						right = treeStack.pop();
+						node.setRight(right);
+						treeStack.push(node);
+						
+					//case "$":
+						
+					//default:
+						//throw new NumberFormatException();
 						
 					}
 				}
@@ -106,18 +118,8 @@ public class Main {
 		
 		node = treeStack.pop();
 		node.print(0);
-	}
-	
-	//Used to print expression as fully parenthesized infix expression
-	public static void printInfix(String expression)
-	{
-		
-	}
-	
-	//Used to print he expression tree
-	public static void printExpressionTree()
-	{
-		
-	}
-	
+		System.out.print("Infix Expression: "); 
+		node.inOrderPrint();
+		reader.close();
+	}	
 }

@@ -23,6 +23,20 @@ public class BTNode<E>
 		right = newRight;
 	}
 	
+	public void inOrderPrint()
+	{
+		if (left != null)
+		{
+			System.out.print("(");
+			left.inOrderPrint();
+		}
+			System.out.print(data);
+		if (right != null)
+		{
+			right.inOrderPrint();
+			System.out.print(")");
+		}
+	}
 	
 	//This method turns the tree on a 90 degree angle print the right subtree, root, and left subtree
 	public void print(int level)
