@@ -56,4 +56,102 @@ public class BTNode<E>
 			left.print(level+1);
 		}
 	}
+	
+
+    public int evaluate(BTNode<String> node)
+    {
+    	if(node == null)
+    		return 0;
+        if (node.left == null && node.right == null)
+            return Integer.parseInt(node.data);
+        else
+        {
+            int result = 0;
+            int left = evaluate(node.left);
+            int right = evaluate(node.right);
+            String operator = node.data;
+ 
+            switch (operator)
+            {
+            case "+" : 
+            	result = left + right; 
+            	break;
+            case "-" : 
+            	result = left - right; 
+            	break;
+            case "*" : 
+            	result = left * right; 
+            	break;
+            case "/" : 
+            	result = left / right; 
+            	break;
+            case "^":
+            	result = (int) Math.pow(left, right);
+            	break;
+          //  case"#":
+           // 	result = Double.parseInt(Math.sqrt(right));
+           // 	break;
+            case ">":
+				if(left > right)
+					result = 1;
+				else
+					result = 0;
+				break;
+            case "<":
+				if(left < right)
+					result = 1;
+				else
+					result = 0;
+				break;
+            case ">=":
+				if(left >= right)
+					result = 1;
+				else
+					result = 0;
+				break;
+            case "<=":
+				if(left <= right)
+					result = 1;
+				else
+					result = 0;
+				break;
+            case "%":
+            	result = left % right;
+            	break;
+            case "==":
+				if(left == right)
+					result = 1;
+				else
+					result = 0;
+				break;
+            case "!=":
+				if(left != right)
+					result = 1;
+				else
+					result = 0;
+				break;
+            case "!":
+            	if(right == 0)
+            		result = 1;
+            	else
+            		result = 0;
+				break;
+            case "&&":
+            	if(left + right == 2.0)
+					result = 1;
+				else
+					result = 0;
+				break;
+            case "||":
+            	if(left + right == 1 || left + right == 2)
+					result = 1;
+				else
+					result = 0;
+				break;	
+            default  :  
+            	
+            }
+            return result;
+        }
+}
 }

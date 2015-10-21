@@ -30,8 +30,9 @@ public class Main {
 			printPostFix(expression);
 			buildTree(expression);
 			
-			//printInfix(expression);
 			
+			
+			new Scanner(System.in).nextLine();
 		}
 		
 		
@@ -45,17 +46,17 @@ public class Main {
 		System.out.println("Postfix expression: " + expression);
 	}
 	
-	//Used to print expression as fully parenthesized infix expression
-	public static void printInfix(String expression)
-	{
-		Scanner reader = new Scanner(expression);
-		
-	}
+	
 	
 	public static void buildTree(String expression)
 	{
-	
-		Scanner reader = new Scanner(expression);
+		String leftString = null;
+		String s = expression;
+		int p = s.indexOf('$');
+		if (p >= 0) 
+		    leftString = s.substring(0, p);
+		  
+		Scanner reader = new Scanner(leftString);
 		String op;
 		BTNode<String> node = null;
 		BTNode<String> left, right;
@@ -98,11 +99,12 @@ public class Main {
 						right = treeStack.pop();
 						node.setRight(right);
 						treeStack.push(node);
+						break;
+				
+					
 						
-					//case "$":
-						
-					//default:
-						//throw new NumberFormatException();
+					default:
+						throw new NumberFormatException();
 						
 					}
 				}
@@ -120,6 +122,10 @@ public class Main {
 		node.print(0);
 		System.out.print("Infix Expression: "); 
 		node.inOrderPrint();
+		int solution = node.evaluate(node);
+		System.out.println("The solution is " + solution);
 		reader.close();
 	}	
+	
+
 }
